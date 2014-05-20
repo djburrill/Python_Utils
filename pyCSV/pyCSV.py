@@ -3,7 +3,13 @@ pyCSV.py
 
 Author: Daniel Burrill
 Date Created: November 6, 2013
-Date Last Modified: November 6, 2013
+Date Last Modified: December 24, 2013
+
+v1.02
+- Added ability to handle columns of different lengths
+
+v1.01
+- Fixed infinite loop bug in column format
 
 v1.00
 - Initial Build.
@@ -85,13 +91,22 @@ def pyCSV(data,outFileName='outFile.csv',row=True):
             
             # Populate dummy string
             for index,subArray in enumerate(data):
-                if (index == len(data)-1):
+                # If Column does not contain enough data
+                if (len(subArray) <= iCounter) and (index == len(data)-1):
+                    dmyString += '' + '\n'
+                elif (len(subArray) <= iCounter):
+                    dmyString += '' + ','
+                # If last index 
+                elif (index == len(data)-1):
                     dmyString += subArray[iCounter] + '\n'
+                # If not last index
                 else:
                     dmyString += subArray[iCounter] + ','
                 
             # Write dummy string to file
             outFile.write(dmyString)
+
+            iCounter += 1
             
     # Data Rows
     else:            
@@ -100,16 +115,12 @@ def pyCSV(data,outFileName='outFile.csv',row=True):
             
             # Reset dummy string
             dmyString = ''
-            
-            print "Hello!"
         
             for index,val in enumerate(subArray):
                 if (index == len(subArray)-1):
-                    tmpStr = str(val)
-                    dmyString += tmpStr #+ '\n'
+                    dmyString += val + '\n'
                 else:
-                    tmpStr = str(val)
-                    dmyString += tmpStr #+ ','
+                    dmyString += val + ','
                         
             # Write dummy string to file
             outFile.write(dmyString)

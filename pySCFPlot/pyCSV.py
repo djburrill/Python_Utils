@@ -100,16 +100,12 @@ def pyCSV(data,outFileName='outFile.csv',row=True):
             
             # Reset dummy string
             dmyString = ''
-            
-            print "Hello!"
         
             for index,val in enumerate(subArray):
                 if (index == len(subArray)-1):
-                    tmpStr = str(val)
-                    dmyString += tmpStr #+ '\n'
+                    dmyString += val + '\n'
                 else:
-                    tmpStr = str(val)
-                    dmyString += tmpStr #+ ','
+                    dmyString += val + ','
                         
             # Write dummy string to file
             outFile.write(dmyString)

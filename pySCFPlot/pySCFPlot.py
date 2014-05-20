@@ -37,8 +37,6 @@ if (__name__ == '__main__'):
     for index,energy in enumerate(energyLines):
         if (len(energy) == 5):
             energyData.append([index,energy[3]])
-            
-    print energyData
     
     # Output to csv format
     pyCSV.pyCSV(energyData)
